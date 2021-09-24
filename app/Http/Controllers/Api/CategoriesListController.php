@@ -20,4 +20,17 @@ class CategoriesListController extends Controller
         else
             return "null";
     }
+
+    public function addCategory(Request $request)
+    {
+        $value = $request->only('name');
+
+        if(!empty($value))
+        {
+            if(Categories::whereName($value)->get() != $value)
+            {
+                return Categories::create(['name' => $value]);
+            }
+        }
+    }
 }

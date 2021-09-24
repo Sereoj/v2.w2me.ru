@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
          */
         Schema::create('user_role', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->default('User');
+            $table->string('name')->default('user');
         });
 
         /*
@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
          */
         Schema::create('user_type', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->default('Free');
+            $table->string('type')->default('free');
         });
 
         Schema::create('users', function (Blueprint $table) {

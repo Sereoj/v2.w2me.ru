@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\user_role;
+use App\Models\user_type;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -24,6 +26,34 @@ class AuthController extends Controller
         return view('layouts.register');
     }
 
+    public function createRoles()
+    {
+        $values = ['user', 'administrator', 'moderator'];
+
+        if(user_role::count() == 0)
+        {
+            foreach ($values as $value)
+            {
+                $role = new user_role(['name' => $value]);
+                $role->save();
+            }
+        }
+    }
+
+    public function createTypes()
+    {
+        $values = ['free', 'premium'];
+
+        if(user_type::count() == 0)
+        {
+            foreach ($values as $value)
+            {
+                $role = new user_type(['type' => $value]);
+                $role->save();
+            }
+        }
+    }
+
     public function create(Request $request)
     {
         $validation = Validator::make($request->all() ,[
@@ -31,6 +61,9 @@ class AuthController extends Controller
             'email'     =>  'required|unique:users',
             'password'    =>  'required',
         ]);
+
+        $this->createRoles();
+        $this->createTypes();
 
         if(!$validation->fails())
         {

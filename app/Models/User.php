@@ -42,6 +42,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserRoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserTypeId($value)
  * @mixin \Eloquent
+ * @property string|null $install_themes
+ * @property string|null $load_themes
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereInstallThemes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLoadThemes($value)
  */
 class User extends Authenticatable
 {

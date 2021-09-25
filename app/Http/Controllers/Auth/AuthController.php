@@ -18,12 +18,22 @@ class AuthController extends Controller
 
     public function index_login()
     {
+
+        view('layouts.app', [
+            'meta_title' => 'hello',
+            'meta_description' => '',
+        ]);
+
         return view('layouts.login');
     }
 
     public function index_register()
     {
-        return view('layouts.register');
+        return view('layouts.register',[
+            'meta_title' => '',
+            'meta_description' => '',
+            ]
+        );
     }
 
     public function createRoles()
@@ -99,12 +109,19 @@ class AuthController extends Controller
 
     public function index_profile()
     {
-        return view('layouts.profile');
+        return view('layouts.profile',
+        [
+            'meta_title' => '',
+            'meta_description' => '',
+        ]);
     }
 
     public function index_dashboard()
     {
-        return view('layouts.dashboard');
+        return view('layouts.dashboard',[
+            'meta_title' => '',
+            'meta_description' => '',
+        ]);
     }
 
     /**

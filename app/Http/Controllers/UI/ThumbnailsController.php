@@ -5,6 +5,7 @@ namespace App\Http\Controllers\UI;
 use App\Http\Controllers\Controller;
 use App\Models\Catalog;
 use App\Models\User;
+use App\View\Components\app;
 use Illuminate\Http\Request;
 
 class ThumbnailsController extends Controller
@@ -62,7 +63,7 @@ class ThumbnailsController extends Controller
 
     public function index_simple(Request $request,$id = null)
     {
-        if($id !=null)
+        if($id != null)
         {
             $image = Catalog::where('id', $id)->first();
 

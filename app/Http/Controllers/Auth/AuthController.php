@@ -18,19 +18,13 @@ class AuthController extends Controller
 
     public function index_login()
     {
-
-        view('layouts.app', [
-            'meta_title' => 'hello',
-            'meta_description' => '',
-        ]);
-
-        return view('layouts.login');
+        return view('layouts.login', ['meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }
 
     public function index_register()
     {
         return view('layouts.register',[
-            'meta_title' => '',
+            'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10',
             'meta_description' => '',
             ]
         );

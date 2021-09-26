@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 <style>
+    body {
+        position: relative;
+    }
+
     .images-list {
         position: relative;
     }
@@ -28,23 +32,34 @@
         background-color: rgba(0, 0, 0, 0.5);
         width: 100%;
     }
+
+    .carousel-caption {
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
 </style>
 
 <header>
     @include('layouts.navbar')
 </header>
-<main class="d-flex py-5">
+<main class="d-flex py-4">
     <div class="container">
         {{ $content }}
     </div>
 </main>
-<footer class="container d-flex py-5">
-    <p>© 2021 World to Me</p>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<footer class="footer mt-auto py-4">
+    <div class="container d-flex">
+        <p>© 2021 World to Me</p>
+    </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 </body>
 
 </html>

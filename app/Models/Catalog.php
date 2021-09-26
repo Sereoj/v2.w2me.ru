@@ -43,5 +43,4 @@ class Catalog extends Model
 
     protected $table = 'catalog';
     protected $fillable = ['id' , 'name', 'description', 'preview', 'images', 'category_id', 'license_type_id', 'user_id', 'catalog_download_id', 'catalog_rating_id'];
-
 }

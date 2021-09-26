@@ -11,7 +11,7 @@ class WallpaperListController extends Controller
 {
     public function getAllWallpapers(Request $filters)
     {
-        return new WallpapersCollection(Catalog::all()->makeHidden(['created_at', 'updated_at']));
+        return Catalog::all()->makeHidden(['created_at', 'updated_at']);
     }
 
     public function getOneWallpaper($nameOrId)

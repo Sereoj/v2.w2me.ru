@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light navbar-expand-md shadow-sm">
+<nav class="navbar navbar-light navbar-expand-lg shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}" style="font-family: Roboto, sans-serif;">
             <i class="bi bi-house-door-fill"></i>

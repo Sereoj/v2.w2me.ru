@@ -85,8 +85,9 @@ class ThumbnailsController extends Controller
         if($id != null)
         {
             $image = Catalog::where('id', $id)->first();
-
-            return \View::make('layouts.simple')->with(['id' => $id, 'image' => $image, 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+            return \View::make('layouts.simple')->with(['id' => $id, 'image' => $image,
+                'carousel' => json_decode($image->images),
+                'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
         }
         return false;
     }

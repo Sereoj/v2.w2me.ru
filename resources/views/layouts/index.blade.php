@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="images-list">
                         <a href="{{ url('images', $image->id) }}">
-                            <img src="{{ $image->preview }}" loading="lazy" class="img-fluid">
+                            <img src="{{ $image->preview }}" loading="lazy" class="img-fluid" style="width: 100%;">
                         </a>
                         <div class="images-list-text">
                             <h3>{{ $image->name }}</h3>

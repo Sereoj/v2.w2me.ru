@@ -24,5 +24,13 @@ Route::get('/wallpapers', [\App\Http\Controllers\Api\WallpaperListController::cl
 Route::get('/wallpapers/load/{id}', [\App\Http\Controllers\Api\WallpaperListController::class, 'getLoadWallpapers']);
 Route::get('/wallpapers/{id}', [\App\Http\Controllers\Api\WallpaperListController::class, 'getOneWallpaper']);
 
+
+Route::get('/wallpapers/add', function ()
+{
+    return "auth";
+});
+Route::post('/wallpapers/add', [\App\Http\Controllers\Api\WallpaperListController::class, 'SetOneWallpaper']);
+
+
 Route::get('/categories', [\App\Http\Controllers\Api\CategoriesListController::class, 'getCategories']);
 Route::get('/categories/{id}', [\App\Http\Controllers\Api\CategoriesListController::class, 'getCategory']);

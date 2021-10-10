@@ -27,7 +27,7 @@ class CreateCatalogTable extends Migration
          */
         Schema::create('license_type', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('type')->default('free');
         });
 
         /*
@@ -58,9 +58,9 @@ class CreateCatalogTable extends Migration
         Schema::create('catalog', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('preview')->nullable();
-            $table->json('images')->nullable();
+            $table->longText('images')->nullable();
 
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('license_type_id')->constrained('license_type')->cascadeOnDelete();

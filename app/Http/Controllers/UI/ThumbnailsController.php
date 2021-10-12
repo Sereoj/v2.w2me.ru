@@ -11,7 +11,6 @@ class ThumbnailsController extends Controller
     public function index()
     {
         $images = Catalog::all();
-
         return view('layouts.index')
             ->with(['images' => $images, 'meta_title' => 'Get Desktop Dynamic Wallpapers for Windows 10']);
     }

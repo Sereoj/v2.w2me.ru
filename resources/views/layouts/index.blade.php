@@ -3,9 +3,7 @@
         <div class="row gy-4">
 
             <h2>{{ isset($header)  ? $header : '' }}</h2>
-
-
-        @foreach($images as $image )
+        @forelse($images as $image )
                 <div class="col-lg-4 col-md-6">
                     <div class="images-list">
                         <a href="{{ url('images', $image->id) }}">
@@ -16,7 +14,9 @@
                         </div>
                     </div>
                 </div>
-        @endforeach
+            @empty
+            <p>В данный момент нет изображений.</p>
+        @endforelse
         </div>
     </x-slot>
 

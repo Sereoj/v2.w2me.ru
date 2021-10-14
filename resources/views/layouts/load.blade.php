@@ -16,7 +16,7 @@
 
             @foreach($catalog as $item)
             <tr>
-                <td>{{ serialize($catalog) }}</td>
+                <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
                 <td>1000</td>
                 <td>

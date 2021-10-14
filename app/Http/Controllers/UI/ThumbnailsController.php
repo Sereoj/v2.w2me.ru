@@ -51,20 +51,26 @@ class ThumbnailsController extends Controller
     }
     public function index_install()
     {
-        $images = Catalog::all();
-        return view('layouts.index')
-            ->with(['images' => $images, 'header' => 'Установленные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+        $catalog = null;
+
+        if(\Auth::check())
+        {
+            $catalog = Catalog::all(); // get catalog
+        }
+        return view('layouts.install')
+            ->with(['images' => $catalog, 'header' => 'Установленные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }
     public function index_load()
     {
         // id, name, count download
-        $user_id = \Auth::user()->id; // id user
-        $catalog = Catalog::whereUserId($user_id); // get catalog
 
+        $catalog = null;
 
-
-        //$download = catalog_download::whereId($catalog_id);
-
+        if(\Auth::check())
+        {
+            $user_id = \Auth::user()->id; // id user
+            $catalog = Catalog::whereUserId($user_id); // get catalog
+        }
         return view('layouts.load')
             ->with(['catalog' => $catalog, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WallpapersCollection;
 use App\Models\Catalog;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
 class WallpaperListController extends Controller
@@ -23,5 +24,18 @@ class WallpaperListController extends Controller
             $str = str_replace(["_", "+", "-"], " ", $nameOrId);
             return Catalog::where(['name' => $str])->get();
         }
+    }
+
+    public function getLoadWallpapers($user_id)
+    {
+        $user = \App\Models\User::find($user_id);
+
+        if($user != null)
+        {
+            return Catalog::find($user)->all();
+        }
+        return $user;
+
+        //return ['user_id' => null];
     }
 }

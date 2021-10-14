@@ -21,6 +21,7 @@ Route::post('/register', [\App\Http\Controllers\Auth\AuthController::class, 'cre
 
 
 Route::get('/wallpapers', [\App\Http\Controllers\Api\WallpaperListController::class, 'getAllWallpapers']);
+Route::get('/wallpapers/load/{id}', [\App\Http\Controllers\Api\WallpaperListController::class, 'getLoadWallpapers']);
 Route::get('/wallpapers/{id}', [\App\Http\Controllers\Api\WallpaperListController::class, 'getOneWallpaper']);
 
 Route::get('/categories', [\App\Http\Controllers\Api\CategoriesListController::class, 'getCategories']);

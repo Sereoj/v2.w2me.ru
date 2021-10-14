@@ -4,6 +4,7 @@ namespace App\Http\Controllers\UI;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catalog;
+use App\Models\catalog_download;
 use Illuminate\Http\Request;
 
 class ThumbnailsController extends Controller
@@ -56,9 +57,16 @@ class ThumbnailsController extends Controller
     }
     public function index_load()
     {
-        $images = Catalog::all();
+        // id, name, count download
+        $user_id = \Auth::user()->id; // id user
+        $catalog = Catalog::whereUserId($user_id); // get catalog
+
+
+
+        //$download = catalog_download::whereId($catalog_id);
+
         return view('layouts.load')
-            ->with(['images' => $images, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+            ->with(['catalog' => $catalog, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }
 
     public function index_simple(Request $request,$id = null)

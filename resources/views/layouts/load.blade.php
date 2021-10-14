@@ -7,18 +7,24 @@
             <thead>
             <tr>
                 <th scope="col">№</th>
-                <th scope="col">Name</th>
-                <th scope="col">Manage</th>
+                <th>Имя</th>
+                <th>Количество скачиваний</th>
+                <th>Действия</th>
             </tr>
             </thead>
             <tbody>
+
+            @foreach($catalog as $item)
             <tr>
-                <th scope="row">Load</th>
-                <td>Load</td>
+                <td>{{ serialize($catalog) }}</td>
+                <td>{{ $item->name }}</td>
+                <td>1000</td>
                 <td>
                     <button type="submit" class="btn btn-primary">Изменить</button>
+                    <button type="submit" class="btn btn-danger">Удалить</button>
                 </td>
             </tr>
+            @endforeach
             </tbody>
         </table>
         </div>

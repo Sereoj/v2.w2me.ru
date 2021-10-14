@@ -1,8 +1,7 @@
 <x-app-layout>
     <x-slot name="content">
         <div class="row gy-4">
-
-            <h2>{{ isset($header)  ? $header : '' }}</h2>
+        <h2>{{ $header ?? '' }}</h2>
         @forelse($images as $image )
                 <div class="col-lg-4 col-md-6">
                     <div class="images-list">

@@ -5,16 +5,16 @@
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{ old('email') }}">
                     @error('email')
-                    <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <div id="nameHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Пароль: </label>
                     <input type="password" class="form-control" id="password" name="password">
                     @error('password')
-                    <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <div id="nameHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 form-check">

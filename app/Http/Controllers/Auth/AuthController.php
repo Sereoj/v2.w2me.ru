@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use App\Models\user_role;
 use App\Models\user_type;
@@ -58,47 +60,35 @@ class AuthController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(UserCreateRequest $request)
     {
-        $validation = Validator::make($request->all() ,[
-            'name'   =>  'required',
-            'email'     =>  'required|unique:users',
-            'password'    =>  'required',
-        ]);
-
         $this->createRoles();
         $this->createTypes();
 
-        if(!$validation->fails())
-        {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => \Hash::make($request->password),
-                'user_type_id' => 1,
-                'user_role_id' => 1
-            ]);
-
-            if($user != null || $user != false)
-            {
-                auth()->login($user);
-                return redirect()->route('user.profile');
-            }
-        }
-        return redirect()->route('user.register')->withErrors($validation);
-    }
-
-    public function store(Request $request)
-    {
-        $validation = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
+            'user_type_id' => 1,
+            'user_role_id' => 1
         ]);
 
-        if (auth()->attempt($validation)) {
+        if($user != null || $user != false)
+        {
+            auth()->login($user);
+            return redirect()->route('user.profile');
+        }
+
+        return redirect()->route('user.register')->withErrors($request->validated());
+    }
+
+    public function store(UserStoreRequest $request)
+    {
+
+        if (auth()->attempt($request->only('email', 'password'))) {
             return redirect()->route('index');
         }
-        return redirect()->route('user.login')->withErrors($validation);
+        return redirect()->route('user.login')->withErrors($request->validated());
     }
 
     public function index_profile()
@@ -118,48 +108,4 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }

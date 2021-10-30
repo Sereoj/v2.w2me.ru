@@ -14,14 +14,14 @@
                     <label for="email" class="form-label">Email: </label>
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="admin@w2me.ru" value="{{ old('email') }}">
                     @error('email')
-                        <div id="nameHelp" class="form-text">{{ $message }}</div>
+                        <div id="emailHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Пароль:</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" name="password">
                     @error('password')
-                        <div id="nameHelp" class="form-text">{{ $message }}</div>
+                        <div id="passwordHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 form-check">

@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\WallpapersCollection;
 use App\Models\Catalog;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
 class WallpaperListController extends Controller
 {
-    public function getAllWallpapers(Request $filters)
+    public function getAllWallpapers(Request $request)
     {
+
         return Catalog::all()->makeHidden(['created_at', 'updated_at']);
     }
 

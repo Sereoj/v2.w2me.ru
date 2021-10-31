@@ -39,9 +39,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->foreignId('user_type_id')->constrained('user_type');
             $table->foreignId('user_role_id')->constrained('user_role');
-            $table->json('favorite_themes')->nullable();
-            $table->json('install_themes')->nullable();
-            $table->json('load_themes')->nullable();
+            $table->string('favorite_themes')->nullable();
+            $table->string('install_themes')->nullable();
+            $table->string('api_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalog;
 use App\Models\catalog_download;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ThumbnailsController extends Controller
 {
@@ -46,10 +47,11 @@ class ThumbnailsController extends Controller
     public function index_favorite()
     {
         $catalog = null;
-
-        if(\Auth::check())
+        if(Auth::check())
         {
-            $catalog = Catalog::all(); // get catalog
+            $getFavorite = unserialize(Auth::user()->favorite_themes);
+
+            $catalog = Catalog::whereIn('id', $getFavorite)->get();
         }
         return view('layouts.favorite')
             ->with(['images' => $catalog, 'header' => 'Любимые изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
@@ -58,9 +60,11 @@ class ThumbnailsController extends Controller
     {
         $catalog = null;
 
-        if(\Auth::check())
+        if(Auth::check())
         {
-            $catalog = Catalog::all(); // get catalog
+            $getInstall = unserialize(Auth::user()->install_themes);
+
+            $catalog = Catalog::whereIn('id', $getInstall)->get();
         }
         return view('layouts.install')
             ->with(['images' => $catalog, 'header' => 'Установленные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
@@ -71,10 +75,12 @@ class ThumbnailsController extends Controller
 
         $catalog = null;
 
-        if(\Auth::check())
+        if(Auth::check())
         {
-            $user_id = \Auth::user()->id; // id user
-            $catalog = Catalog::whereUserId($user_id); // get catalog
+            $user_id = Auth::user()->id; // id user
+            $catalog = Catalog::whereUserId($user_id)->get(); // get catalog
+
+
         }
         return view('layouts.load')
             ->with(['catalog' => $catalog, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
@@ -85,8 +91,9 @@ class ThumbnailsController extends Controller
         if($id != null)
         {
             $image = Catalog::where('id', $id)->first();
-            return \View::make('layouts.simple')->with(['id' => $id, 'image' => $image,
-                'carousel' => json_decode($image->images),
+
+            return \View::make('layouts.simple')->with([
+                'id' => $id, 'image' => $image,
                 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
         }
         return false;

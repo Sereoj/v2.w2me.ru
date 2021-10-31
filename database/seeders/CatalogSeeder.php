@@ -27,11 +27,11 @@ class CatalogSeeder extends Seeder
                     'images' => serialize([
                         'sunrise' => [],
                         'day' => [
-                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_day.jpg'
+                            0 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_day.jpg'
                         ],
                         'sunset' => [],
                         'night' => [
-                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_night.jpg'
+                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_night.jpg'
                         ],
                     ]),
                     'category_id' => 1,
@@ -49,16 +49,16 @@ class CatalogSeeder extends Seeder
                     'preview' => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_day.jpg',
                     'images' => serialize([
                         'sunrise' => [
-                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_sunrise.jpg',
+                            0 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_sunrise.jpg',
                         ],
                         'day' => [
-                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_day.jpg'
+                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_day.jpg'
                         ],
                         'sunset' => [
-                            3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_sunset.jpg'
+                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_sunset.jpg'
                         ],
                         'night' => [
-                            4 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_night.jpg'
+                            3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_night.jpg'
                         ],
                     ]),
                     'category_id' => 1,
@@ -76,16 +76,16 @@ class CatalogSeeder extends Seeder
                     'preview' => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_day.jpg',
                     'images' => serialize([
                         'sunrise' => [
-                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_sunrise.jpg',
+                            0 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_sunrise.jpg',
                         ],
                         'day' => [
-                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_day.jpg'
+                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_day.jpg'
                         ],
                         'sunset' => [
-                            3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_sunset.jpg'
+                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_sunset.jpg'
                         ],
                         'night' => [
-                            4 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_night.jpg'
+                            3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_night.jpg'
                         ],
                     ]),
                     'category_id' => 1,
@@ -104,11 +104,11 @@ class CatalogSeeder extends Seeder
                     'images' => serialize([
                         'sunrise' => [],
                         'day' => [
-                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_Abstract_day.jpg'
+                            0 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_Abstract_day.jpg'
                         ],
                         'sunset' => [],
                         'night' => [
-                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_Abstract_night.jpg'
+                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_Abstract_night.jpg'
                         ],
                     ]),
                     'category_id' => 1,
@@ -126,16 +126,16 @@ class CatalogSeeder extends Seeder
                     'preview' => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_day.jpg',
                     'images' => serialize([
                         'sunrise' => [
-                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_sunrise.jpg',
+                            0 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_sunrise.jpg',
                         ],
                         'day' => [
-                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_day.jpg'
+                            1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_day.jpg'
                         ],
                         'sunset' => [
-                            3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_sunset.jpg'
+                            2 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_sunset.jpg'
                         ],
                         'night' => [
-                            4 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_night.jpg'
+                            3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_night.jpg'
                         ],
                     ]),
                     'category_id' => 1,

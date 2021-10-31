@@ -1,25 +1,27 @@
 <x-app-layout>
     <x-slot name="content">
         <div class="row gy-4">
-            @isset($image)
                 <div class="col-xl-8">
-                    @isset($carousel)
                     <div id="carouselCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            @foreach($carousel as $key => $button)
-                            <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="{{ $loop->index }}"
-                                    class="{{ $key == 1 ? 'active' : '' }}" aria-current="true" aria-label="{{ $button['0'] }}"></button>
+                            @foreach(unserialize($image->images) as $value)
+                                @foreach($value as $key => $link)
+                                    <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="{{ $key }}"
+                                            class="{{ $key == 0 ? 'active' : '' }}" aria-current="true" aria-label=""></button>
+                                @endforeach
                             @endforeach
                         </div>
                         <div class="carousel-inner">
-                            @foreach($carousel as $key => $img)
-                            <div class="carousel-item {{ $key == 1 ? 'active' : '' }}">
-                                <img src="{{ $img['1'] }}"
-                                     class="d-block w-100" alt="..." loading="lazy">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ $img['0'] }}</h5>
+                            @foreach(unserialize($image->images) as $name => $value)
+                                @foreach($value as $key => $link)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ $link }}"
+                                         class="d-block w-100" alt="..." loading="lazy">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>{{ $name }}</h5>
+                                    </div>
                                 </div>
-                            </div>
+                                @endforeach
                             @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions"
@@ -33,7 +35,6 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    @endisset
                 </div>
                 <div class="col-xl-4 py-4 p-4">
                     <h2>{{ $image->name }}</h2>
@@ -45,7 +46,6 @@
                     <button type="button" class="btn btn-primary">Установить (.zip)</button>
                     <button type="button" class="btn btn-primary">Открыть в приложении</button>
                 </div>
-            @endisset
         </div>
     </x-slot>
 

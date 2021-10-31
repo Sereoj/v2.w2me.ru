@@ -22,9 +22,9 @@ Route::name('images.')->group(
         Route::get('/popular',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_popular'])->name('popular');
         Route::get('/wait',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_wait'])->name('wait');
 
-        Route::get('/favorite',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_favorite'])->name('favorite');
-        Route::get('/install',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_install'])->name('install');
-        Route::get('/load',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_load'])->name('load');
+        Route::middleware('auth')->get('/favorite',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_favorite'])->name('favorite');
+        Route::middleware('auth')->get('/install',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_install'])->name('install');
+        Route::middleware('auth')->get('/load',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_load'])->name('load');
 
         Route::get('/images/{id}',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_simple'])->name('simple');
     }
@@ -41,10 +41,10 @@ Route::name('user.')->group(
         Route::get('/login', [\App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('login');
         Route::post('/login', [\App\Http\Controllers\Auth\AuthController::class, 'store']);
 
-        Route::get('/profile', [\App\Http\Controllers\Auth\AuthController::class, 'index_profile'])->name('profile');
-        Route::get('/dashboard', [\App\Http\Controllers\Auth\AuthController::class, 'index_profile'])->name('dashboard');
+        Route::middleware('auth')->get('/profile', [\App\Http\Controllers\Auth\AuthController::class, 'index_profile'])->name('profile');
+        Route::middleware('auth')->get('/dashboard', [\App\Http\Controllers\Auth\AuthController::class, 'index_profile'])->name('dashboard');
 
-        Route::get('/logout',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_logout'])->name('logout');
+        Route::middleware('auth')->get('/logout',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_logout'])->name('logout');
 
     }
 );

@@ -24,10 +24,6 @@
                         <div id="passwordHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberUser">
-                    <label class="form-check-label" for="rememberUser">Запомни меня</label>
-                </div>
                 <button type="submit" class="btn btn-primary">Войти</button>
             </form>
         </div>

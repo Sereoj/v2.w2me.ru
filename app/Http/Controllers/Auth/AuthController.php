@@ -8,8 +8,6 @@ use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use App\Models\user_role;
 use App\Models\user_type;
-use Illuminate\Http\Request;
-use Validator;
 
 class AuthController extends Controller
 {
@@ -84,8 +82,7 @@ class AuthController extends Controller
 
     public function store(UserStoreRequest $request)
     {
-
-        if (auth()->attempt($request->only('email', 'password'))) {
+        if (auth()->attempt($request->only('email', 'password'), $request->rememberUser)) {
             return redirect()->route('index');
         }
         return redirect()->route('user.login')->withErrors($request->validated());

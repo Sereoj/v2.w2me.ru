@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catalog;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class WallpaperListController extends Controller
@@ -27,9 +28,9 @@ class WallpaperListController extends Controller
 
     public function getLoadWallpapers($user_id)
     {
-        $user = \App\Models\User::find($user_id);
+        $user = User::find($user_id);
 
-        if($user != null)
+        if(null != $user)
         {
             return Catalog::find($user)->all();
         }

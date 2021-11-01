@@ -77,15 +77,15 @@ class AuthController extends Controller
             return redirect()->route('user.profile');
         }
 
-        return redirect()->route('user.register')->withErrors($request->validated());
+        return redirect()->route('user.register')->withInput($request->all());
     }
 
     public function store(UserStoreRequest $request)
     {
-        if (auth()->attempt($request->only('email', 'password'), $request->rememberUser)) {
+        if (auth()->attempt($request->only('email', 'password'), $request->rememberUser == "true")) {
             return redirect()->route('index');
         }
-        return redirect()->route('user.login')->withErrors($request->validated());
+        return redirect()->route('user.login')->withInput($request->all());
     }
 
     public function index_profile()

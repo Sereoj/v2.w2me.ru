@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
 
 class UserStoreRequest extends FormRequest
 {
@@ -12,8 +10,16 @@ class UserStoreRequest extends FormRequest
     {
         return
             [
-                'email' => 'required|email',
+                'email' => 'required',
                 'password' => 'required',
             ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required'  => 'Это обязательное поле',
+            'unique' => 'Данное поле должно быть уникальным',
+        ];
     }
 }

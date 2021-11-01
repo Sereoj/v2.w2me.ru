@@ -4,21 +4,21 @@
             <form method="POST" action="{{ route('user.login') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{ old('email') }}">
+                    <label for="email" class="form-label">Email: </label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="admin@w2me.ru" value="{{ old('email') }}">
                     @error('email')
                     <div id="emailHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Пароль: </label>
+                    <label for="password" class="form-label">Пароль:</label>
                     <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" name="password">
                     @error('password')
                     <div id="passwordHelp" class="form-text">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberUser" name="rememberUser">
+                    <input type="checkbox" class="form-check-input" id="rememberUser" name="rememberUser" value="true">
                     <label class="form-check-label" for="rememberUser">Запомни меня</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Войти</button>

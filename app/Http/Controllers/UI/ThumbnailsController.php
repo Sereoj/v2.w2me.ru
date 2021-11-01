@@ -95,16 +95,29 @@ class ThumbnailsController extends Controller
             ->with(['catalog' => $catalog, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }
 
+
     public function store_load(Request $request)
     {
-        return $request;
+        if(isset($request->delete))
+        {
+            $id = (int)$request->delete;
+            Catalog::whereId($id)->delete();
+        }
+        if(isset($request->change))
+        {
+            return view('layouts.change')->with(['header' => 'Изменение коллекции', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+        }
+        if(isset($request->add))
+        {
+            return view('layouts.add')->with(['header' => 'Создание коллекции', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+        }
     }
 
     public function index_simple($id = null)
     {
         if($id != null)
         {
-            $image = Catalog::where('id', $id)->first();
+            $image = new CatalogResource(Catalog::where('id', $id)->first());
 
             return \View::make('layouts.simple')->with([
                 'id' => $id, 'image' => $image,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UI;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CatalogResource;
 use App\Models\Catalog;
 use App\Models\catalog_download;
 use Illuminate\Http\Request;
@@ -50,8 +51,12 @@ class ThumbnailsController extends Controller
         if(Auth::check())
         {
             $getFavorite = unserialize(Auth::user()->favorite_themes);
-
-            $catalog = Catalog::whereIn('id', $getFavorite)->get();
+            if(is_array($getFavorite))
+            {
+                $catalog = Catalog::whereIn('id', $getFavorite)->get();
+            }else{
+                $catalog = func_get_args();
+            }
         }
         return view('layouts.favorite')
             ->with(['images' => $catalog, 'header' => 'Любимые изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
@@ -64,7 +69,12 @@ class ThumbnailsController extends Controller
         {
             $getInstall = unserialize(Auth::user()->install_themes);
 
-            $catalog = Catalog::whereIn('id', $getInstall)->get();
+            if(is_array($getInstall))
+            {
+                $catalog = Catalog::whereIn('id', $getInstall)->get();
+            }else{
+                $catalog = func_get_args();
+            }
         }
         return view('layouts.install')
             ->with(['images' => $catalog, 'header' => 'Установленные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
@@ -78,15 +88,14 @@ class ThumbnailsController extends Controller
         if(Auth::check())
         {
             $user_id = Auth::user()->id; // id user
-            $catalog = Catalog::whereUserId($user_id)->get(); // get catalog
-
+            $catalog = CatalogResource::collection(Catalog::all()); // get catalogs
 
         }
         return view('layouts.load')
             ->with(['catalog' => $catalog, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }
 
-    public function index_simple(Request $request,$id = null)
+    public function index_simple($id = null)
     {
         if($id != null)
         {

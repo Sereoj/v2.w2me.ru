@@ -18,6 +18,7 @@ class CatalogRatingSeeder extends Seeder
         DB::table('catalog_rating')->insert([
             [
                 'id' => 1,
+                'catalog_id' => 1,
                 'bestRating' => 0,
                 'worstRating' => 0,
                 'ratingValue' => 0,
@@ -26,6 +27,7 @@ class CatalogRatingSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'catalog_id' => 2,
                 'bestRating' => 0,
                 'worstRating' => 0,
                 'ratingValue' => 0,
@@ -34,6 +36,7 @@ class CatalogRatingSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'catalog_id' => 3,
                 'bestRating' => 0,
                 'worstRating' => 0,
                 'ratingValue' => 0,
@@ -42,6 +45,7 @@ class CatalogRatingSeeder extends Seeder
             ],
             [
                 'id' => 4,
+                'catalog_id' => 4,
                 'bestRating' => 0,
                 'worstRating' => 0,
                 'ratingValue' => 0,
@@ -50,6 +54,7 @@ class CatalogRatingSeeder extends Seeder
             ],
             [
                 'id' => 5,
+                'catalog_id' => 5,
                 'bestRating' => 0,
                 'worstRating' => 0,
                 'ratingValue' => 0,

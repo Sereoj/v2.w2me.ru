@@ -37,8 +37,6 @@ class CatalogSeeder extends Seeder
                     'category_id' => 1,
                     'license_type_id' => 1,
                     'user_id' => 1,
-                    'catalog_download_id' => 1,
-                    'catalog_rating_id' => 1,
                 ],
                 [
                     'id' => 2,
@@ -64,8 +62,6 @@ class CatalogSeeder extends Seeder
                     'category_id' => 1,
                     'license_type_id' => 1,
                     'user_id' => 1,
-                    'catalog_download_id' => 2,
-                    'catalog_rating_id' => 2,
                 ],
                 [
                     'id' => 3,
@@ -91,8 +87,6 @@ class CatalogSeeder extends Seeder
                     'category_id' => 1,
                     'license_type_id' => 1,
                     'user_id' => 1,
-                    'catalog_download_id' => 3,
-                    'catalog_rating_id' => 3,
                 ],
                 [
                     'id' => 4,
@@ -114,8 +108,6 @@ class CatalogSeeder extends Seeder
                     'category_id' => 1,
                     'license_type_id' => 1,
                     'user_id' => 1,
-                    'catalog_download_id' => 4,
-                    'catalog_rating_id' => 4,
                 ],
                 [
                     'id' => 5,
@@ -141,8 +133,6 @@ class CatalogSeeder extends Seeder
                     'category_id' => 1,
                     'license_type_id' => 1,
                     'user_id' => 1,
-                    'catalog_download_id' => 5,
-                    'catalog_rating_id' => 5,
                 ],
             ]
         );

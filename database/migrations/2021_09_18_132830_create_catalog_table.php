@@ -30,29 +30,6 @@ class CreateCatalogTable extends Migration
             $table->string('type')->default('free');
         });
 
-        /*
-         * id: 1
-         * size: 7675 mb
-         * links: { "Github": link, }
-         * count_download: 1000
-         * timestamps - когда загрузили, когда обновили.
-         */
-        Schema::create('catalog_download', function (Blueprint $table) {
-            $table->id();
-            $table->string('size');
-            $table->string('links')->nullable();
-            $table->integer('count_download')->default('0');
-        });
-
-        Schema::create('catalog_rating', function (Blueprint $table) {
-            $table->id();
-            $table->string('bestRating');
-            $table->string('worstRating');
-            $table->string('ratingValue');
-            $table->string('ratingCount');
-            $table->string('reviewCount');
-        });
-
         Schema::create('catalog', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
@@ -65,8 +42,24 @@ class CreateCatalogTable extends Migration
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('license_type_id')->constrained('license_type')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete(); // Кто загрузил
-            $table->foreignId('catalog_download_id')->constrained('catalog_download')->cascadeOnDelete();
-            $table->foreignId('catalog_rating_id')->constrained('catalog_rating')->cascadeOnDelete();
+        });
+
+        Schema::create('catalog_download', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('catalog_id')->constrained('catalog')->cascadeOnDelete();
+            $table->string('size');
+            $table->string('links')->nullable();
+            $table->integer('count_download')->default('0');
+        });
+
+        Schema::create('catalog_rating', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('catalog_id')->constrained('catalog')->cascadeOnDelete();
+            $table->string('bestRating');
+            $table->string('worstRating');
+            $table->string('ratingValue');
+            $table->string('ratingCount');
+            $table->string('reviewCount');
         });
     }
 
@@ -79,8 +72,8 @@ class CreateCatalogTable extends Migration
     {
         Schema::dropIfExists('categories');
         Schema::dropIfExists('license_type');
+        Schema::dropIfExists('catalog');
         Schema::dropIfExists('catalog_download');
         Schema::dropIfExists('catalog_rating');
-        Schema::dropIfExists('catalog');
     }
 }

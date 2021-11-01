@@ -18,7 +18,7 @@
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
-                <td>1000</td>
+                <td>{{ $item->download[0]->count_download }}</td>
                 <td>
                     <button type="submit" class="btn btn-primary">Изменить</button>
                     <button type="submit" class="btn btn-danger">Удалить</button>
@@ -27,6 +27,7 @@
             @endforeach
             </tbody>
         </table>
+            <button type="submit" class="btn btn-primary">Добавить</button>
         </div>
         @endauth
 

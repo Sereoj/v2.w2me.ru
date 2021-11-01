@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CatalogResource;
 use App\Models\Catalog;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class WallpaperListController extends Controller
     public function getAllWallpapers(Request $request)
     {
 
-        return Catalog::all()->makeHidden(['created_at', 'updated_at']);
+        return CatalogResource::collection(Catalog::all());
     }
 
     public function getOneWallpaper($nameOrId)
@@ -22,7 +23,7 @@ class WallpaperListController extends Controller
         else
         {
             $str = str_replace(["_", "+", "-"], " ", $nameOrId);
-            return Catalog::where(['name' => $str])->get();
+            return CatalogResource::collection(Catalog::where(['name' => $str])->get());
         }
     }
 

@@ -8,6 +8,7 @@ use App\Models\Catalog;
 use App\Models\catalog_download;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Doctrine\Common\Cache\Psr6\get;
 
 class ThumbnailsController extends Controller
 {
@@ -88,11 +89,15 @@ class ThumbnailsController extends Controller
         if(Auth::check())
         {
             $user_id = Auth::user()->id; // id user
-            $catalog = CatalogResource::collection(Catalog::all()); // get catalogs
-
+            $catalog = CatalogResource::collection(Catalog::whereUserId($user_id)->get()); // get catalogs
         }
         return view('layouts.load')
             ->with(['catalog' => $catalog, 'header' => 'Вами загружанные изображения', 'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+    }
+
+    public function store_load(Request $request)
+    {
+        return $request;
     }
 
     public function index_simple($id = null)

@@ -25,6 +25,7 @@ Route::name('images.')->group(
         Route::middleware('auth')->get('/favorite',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_favorite'])->name('favorite');
         Route::middleware('auth')->get('/install',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_install'])->name('install');
         Route::middleware('auth')->get('/load',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_load'])->name('load');
+        Route::middleware('auth')->post('/load',[\App\Http\Controllers\UI\ThumbnailsController::class, 'store_load']);
 
         Route::get('/images/{id}',[\App\Http\Controllers\UI\ThumbnailsController::class, 'index_simple'])->name('simple');
     }

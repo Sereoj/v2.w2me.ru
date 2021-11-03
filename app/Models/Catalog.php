@@ -52,7 +52,7 @@ class Catalog extends Model
 
     public function license()
     {
-        return $this->belongsTo(license_type::class);
+        return $this->hasOne(license_type::class);
     }
 
     public function user()

@@ -21,15 +21,6 @@ class CreateCatalogTable extends Migration
             $table->id();
             $table->string('name');
         });
-        /*
-         * id: 1
-         * type: Free
-         */
-        Schema::create('license_type', function (Blueprint $table) {
-            $table->id();
-            $table->string('type')->default('free');
-        });
-
         Schema::create('catalog', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
@@ -40,15 +31,21 @@ class CreateCatalogTable extends Migration
             $table->longText('images')->nullable();
 
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->foreignId('license_type_id')->constrained('license_type')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete(); // Кто загрузил
+        });
+
+        Schema::create('license_type', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('catalog_id')->constrained('catalog')->cascadeOnDelete();
+            $table->string('cost')->nullable();
+            $table->enum('currency', ['RUB', 'USD', 'EUR'])->nullable();
+            $table->enum('type', ['free', 'pay']);
         });
 
         Schema::create('catalog_download', function (Blueprint $table) {
             $table->id();
             $table->foreignId('catalog_id')->constrained('catalog')->cascadeOnDelete();
-            $table->string('size');
-            $table->string('links')->nullable();
+            $table->string('size')->nullable();
             $table->integer('count_download')->default('0');
         });
 
@@ -60,6 +57,14 @@ class CreateCatalogTable extends Migration
             $table->string('ratingValue');
             $table->string('ratingCount');
             $table->string('reviewCount');
+        });
+
+        Schema::create('catalog_download_links', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('catalog_download_id')->constrained('catalog_download')->cascadeOnDelete();
+            $table->string('link_0')->nullable();
+            $table->string('link_1')->nullable();
+            $table->string('link_2')->nullable();
         });
     }
 
@@ -75,5 +80,6 @@ class CreateCatalogTable extends Migration
         Schema::dropIfExists('catalog');
         Schema::dropIfExists('catalog_download');
         Schema::dropIfExists('catalog_rating');
+        Schema::dropIfExists('catalog_download_links');
     }
 }

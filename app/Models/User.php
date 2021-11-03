@@ -47,7 +47,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereInstallThemes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLoadThemes($value)
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -83,4 +83,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function role()
+    {
+        return $this->hasOne(user_role::class);
+    }
+
+    public function type()
+    {
+        return $this->hasOne(user_type::class);
+    }
+
+    public function photo()
+    {
+        return $this->hasOne(user_photo::class)->latest();
+    }
 }

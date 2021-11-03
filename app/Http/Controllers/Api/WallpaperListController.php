@@ -12,7 +12,6 @@ class WallpaperListController extends Controller
 {
     public function getAllWallpapers(Request $request)
     {
-
         return CatalogResource::collection(Catalog::all());
     }
 
@@ -36,7 +35,5 @@ class WallpaperListController extends Controller
             return Catalog::find($user)->all();
         }
         return $user;
-
-        //return ['user_id' => null];
     }
 }

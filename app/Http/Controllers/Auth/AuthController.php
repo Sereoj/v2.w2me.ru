@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProfileEditRequest;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Models\user_role;
-use App\Models\user_type;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 
 class AuthController extends Controller
 {
@@ -30,54 +37,30 @@ class AuthController extends Controller
         );
     }
 
-    public function createRoles()
-    {
-        $values = ['user', 'administrator', 'moderator'];
-
-        if(user_role::count() == 0)
-        {
-            foreach ($values as $value)
-            {
-                $role = new user_role(['name' => $value]);
-                $role->save();
-            }
-        }
-    }
-
-    public function createTypes()
-    {
-        $values = ['free', 'premium'];
-
-        if(user_type::count() == 0)
-        {
-            foreach ($values as $value)
-            {
-                $role = new user_type(['type' => $value]);
-                $role->save();
-            }
-        }
-    }
-
     public function create(UserCreateRequest $request)
     {
-        $this->createRoles();
-        $this->createTypes();
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => \Hash::make($request->password),
-            'user_type_id' => 1,
-            'user_role_id' => 1
+        ]);
+        $user->role()->create([
+            'role' => 'user'
+        ]);
+
+        $user->type()->create([
+            'type' => 'free',
+            'gift_time' => null,
+            'cost' => '2000'
         ]);
 
         if($user != null || $user != false)
         {
-            auth()->login($user);
+            auth()->login($user, true);
             return redirect()->route('user.profile');
         }
 
-        return redirect()->route('user.register')->withInput($request->all());
+        return redirect()->route('user.register')->withInput();
     }
 
     public function store(UserStoreRequest $request)
@@ -85,7 +68,7 @@ class AuthController extends Controller
         if (auth()->attempt($request->only('email', 'password'), $request->rememberUser == "true")) {
             return redirect()->route('index');
         }
-        return redirect()->route('user.login')->withInput($request->all());
+        return redirect()->route('user.login')->withInput();
     }
 
     public function index_profile()

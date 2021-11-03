@@ -21,50 +21,30 @@ class CatalogDownloadSeeder extends Seeder
                    'id' => 1,
                    'catalog_id' => 1,
                    'size' => 0,
-                   'links' => serialize([
-                       'download_1' => 'https://v2.w2me.ru/download/file.zip',
-                       'download_2' => 'https://v2.w2me.ru/download/file.zip',
-                   ]),
                    'count_download' => 100,
                 ],
                 [
                     'id' => 2,
                     'catalog_id' => 2,
                     'size' => 0,
-                    'links' => serialize([
-                        'download_1' => 'https://v2.w2me.ru/download/file.zip',
-                        'download_2' => 'https://v2.w2me.ru/download/file.zip',
-                    ]),
                     'count_download' => 100,
                 ],
                 [
                     'id' => 3,
                     'catalog_id' => 3,
                     'size' => 0,
-                    'links' => serialize([
-                        'download_1' => 'https://v2.w2me.ru/download/file.zip',
-                        'download_2' => 'https://v2.w2me.ru/download/file.zip',
-                    ]),
                     'count_download' => 100,
                 ],
                 [
                     'id' => 4,
                     'catalog_id' => 4,
                     'size' => 0,
-                    'links' => serialize([
-                        'download_1' => 'https://v2.w2me.ru/download/file.zip',
-                        'download_2' => 'https://v2.w2me.ru/download/file.zip',
-                    ]),
                     'count_download' => 100,
                 ],
                 [
                     'id' => 5,
                     'catalog_id' => 5,
                     'size' => 0,
-                    'links' => serialize([
-                        'download_1' => 'https://v2.w2me.ru/download/file.zip',
-                        'download_2' => 'https://v2.w2me.ru/download/file.zip',
-                    ]),
                     'count_download' => 100,
                 ],
 

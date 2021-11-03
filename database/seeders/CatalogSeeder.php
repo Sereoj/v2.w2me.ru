@@ -34,8 +34,7 @@ class CatalogSeeder extends Seeder
                             1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Abstract_Cloth_night.jpg'
                         ],
                     ]),
-                    'category_id' => 1,
-                    'license_type_id' => 1,
+                    'category_id' => 2,
                     'user_id' => 1,
                 ],
                 [
@@ -59,8 +58,7 @@ class CatalogSeeder extends Seeder
                             3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Apple_Ocean_night.jpg'
                         ],
                     ]),
-                    'category_id' => 1,
-                    'license_type_id' => 1,
+                    'category_id' => 2,
                     'user_id' => 1,
                 ],
                 [
@@ -84,8 +82,7 @@ class CatalogSeeder extends Seeder
                             3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Automation_Hyper_Turning_Left_night.jpg'
                         ],
                     ]),
-                    'category_id' => 1,
-                    'license_type_id' => 1,
+                    'category_id' => 3,
                     'user_id' => 1,
                 ],
                 [
@@ -105,8 +102,7 @@ class CatalogSeeder extends Seeder
                             1 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_Abstract_night.jpg'
                         ],
                     ]),
-                    'category_id' => 1,
-                    'license_type_id' => 1,
+                    'category_id' => 2,
                     'user_id' => 1,
                 ],
                 [
@@ -130,8 +126,7 @@ class CatalogSeeder extends Seeder
                             3 => 'https://raw.githubusercontent.com/t1m0thyj/WDD-website/master/themes/previews/Big_Sur_night.jpg'
                         ],
                     ]),
-                    'category_id' => 1,
-                    'license_type_id' => 1,
+                    'category_id' => 2,
                     'user_id' => 1,
                 ],
             ]

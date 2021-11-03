@@ -31,6 +31,12 @@ class catalog_download extends Model
 
     //id	size	links	count_download	created_at	updated_at
     protected $table = 'catalog_download';
-    protected $fillable = ['id', 'size', 'links', 'count_download'];
-    public $timestamps = true;
+    protected $fillable = ['id', 'catalog_id', 'size', 'count_download'];
+
+    public function links()
+    {
+        return $this->hasOne(catalog_download_links::class);
+    }
+
+
 }

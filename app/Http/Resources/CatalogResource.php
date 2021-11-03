@@ -20,7 +20,7 @@ class CatalogResource extends JsonResource
             'category' => $this->category,
             'license' => $this->license,
             'user' => $this->user->name,
-            'download' => $this->download,
+            'download' => CatalogDownloadResource::collection($this->download),
             'rating' => $this->rating,
         ];
     }

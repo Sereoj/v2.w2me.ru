@@ -73,11 +73,66 @@ class AuthController extends Controller
 
     public function index_profile()
     {
+        $user = new UserResource(auth()->user());
+
         return view('layouts.profile',
         [
+            'header' => 'Первый профиль',
             'meta_title' => '',
             'meta_description' => '',
+            'user' => $user,
+            'image' => $user->photo != null ? $user->photo->path : 'https://site112.com/img/200x200.png'
         ]);
+    }
+
+    public function store_profile(Request $request)
+    {
+        return redirect()->route('user.edit');
+    }
+
+    public function index_edit_profile($params = null)
+    {
+        $user = new UserResource(auth()->user());
+
+        $args = [
+            'header' => 'Редактирование профиля',
+            'meta_title' => '',
+            'meta_description' => '',
+            'user' => $user,
+        ];
+
+        $args['style'] = isset($params['validated']) && ($params['validated'] == true) ? 'needs-validation was-validated' : '';
+        $args['status'] = isset($params['password']) && ($params['password'] == true);
+        $args['status_image'] = isset($params['photo'] ) && ($params['photo'] != null);
+
+        return view('layouts.edit_profile',$args);
+    }
+
+    public function store_edit_profile(StoreProfileEditRequest $request)
+    {
+        $params = null;
+
+        $user = Auth::user();
+        $user->name = $request->name;
+
+        $params['validated'] = true;
+        if($request->new_password != null && $request->old_password != null) {
+            $params['password'] = true;
+        }
+
+        if($request->photo != null)
+        {
+            $params['photo'] = $request->photo;
+
+            $path = $request->photo->store('/','public');
+
+            $user->photo()->create([
+                'path' => '/public'.Storage::url($path)
+            ]);
+        }
+
+        $user->save();
+        return $this->index_edit_profile($params);
     }
 
     public function index_dashboard()

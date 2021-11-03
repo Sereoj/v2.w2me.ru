@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserTypeSeeder extends Seeder
 {
@@ -13,13 +14,11 @@ class UserTypeSeeder extends Seeder
      */
     public function run()
     {
-        $values = ['free', 'premium'];
-
-        foreach ($values as $item)
-        {
-            \DB::table('user_type')->insert(
-                ['type' => $item]
-            );
-        }
+        DB::table('user_type')->insert([
+            'user_id' => 1,
+            'type' => 1,
+            'gift_time' => null,
+            'cost' => '10000'
+        ]);
     }
 }

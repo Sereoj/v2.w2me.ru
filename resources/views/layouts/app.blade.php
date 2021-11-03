@@ -40,6 +40,11 @@
     .btn {
         margin-top: 10px;
     }
+
+    .img-profile{
+        height: 200px;
+        width: 200px;
+    }
 </style>
 
 <header>

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\CategoriesListController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WallpaperListController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,23 +18,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [\App\Http\Controllers\Auth\AuthController::class, 'index']);
-Route::post('/login', [\App\Http\Controllers\Auth\AuthController::class, 'store']);
-Route::get('/register', [\App\Http\Controllers\Auth\AuthController::class, 'index']);
-Route::post('/register', [\App\Http\Controllers\Auth\AuthController::class, 'create']);
+Route::get('/login', [AuthController::class, 'index']);
+Route::post('/login', [AuthController::class, 'store']);
+Route::get('/register', [AuthController::class, 'index']);
+Route::post('/register', [AuthController::class, 'create']);
 
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{user}', [UserController::class, 'show']);
+Route::patch('/users/{user}', [UserController::class, 'update']);
+Route::delete('/users/{user}', [UserController::class, 'destroy']);
 
-Route::get('/wallpapers', [\App\Http\Controllers\Api\WallpaperListController::class, 'getAllWallpapers']);
-Route::get('/wallpapers/load/{id}', [\App\Http\Controllers\Api\WallpaperListController::class, 'getLoadWallpapers']);
-Route::get('/wallpapers/{id}', [\App\Http\Controllers\Api\WallpaperListController::class, 'getOneWallpaper']);
+Route::get('/wallpapers', [WallpaperListController::class, 'getAllWallpapers']);
+Route::get('/wallpapers/load/{id}', [WallpaperListController::class, 'getLoadWallpapers']);
+Route::get('/wallpapers/{id}', [WallpaperListController::class, 'getOneWallpaper']);
+
+Route::middleware('auth:api')->group(function (){
+    //todo
+});
 
 
 Route::get('/wallpapers/add', function ()
 {
     return "auth";
 });
-Route::post('/wallpapers/add', [\App\Http\Controllers\Api\WallpaperListController::class, 'SetOneWallpaper']);
+Route::post('/wallpapers/add', [WallpaperListController::class, 'SetOneWallpaper']);
 
 
-Route::get('/categories', [\App\Http\Controllers\Api\CategoriesListController::class, 'getCategories']);
-Route::get('/categories/{id}', [\App\Http\Controllers\Api\CategoriesListController::class, 'getCategory']);
+Route::get('/categories', [CategoriesListController::class, 'getCategories']);
+Route::get('/categories/{id}', [CategoriesListController::class, 'getCategory']);

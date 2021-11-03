@@ -5,10 +5,8 @@ namespace App\Http\Controllers\UI;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CatalogResource;
 use App\Models\Catalog;
-use App\Models\catalog_download;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function Doctrine\Common\Cache\Psr6\get;
 
 class ThumbnailsController extends Controller
 {

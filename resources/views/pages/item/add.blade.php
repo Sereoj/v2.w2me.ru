@@ -3,7 +3,7 @@
         @auth
         <div class="row gy-4">
         <h2>{{ $header ?? '' }}</h2>
-
+            <div class="alert alert-danger" role="alert">Нет доступа</div>
 
         @endauth
 

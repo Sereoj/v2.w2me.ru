@@ -15,6 +15,7 @@
                     <p class="lead">Тип аккаунта: {{ $user->type->type }}</p>
                     <p class="lead">Ваш баланс: {{ $user->type->cost }}</p>
                     <p class="lead">Дата создания аккаунта: {{ $user->created_at }}</p>
+                    <div class="alert alert-danger" role="alert">Требуется подверждение email: <span>{{$user->email}}</span></div>
                 </div>
         </div>
     </x-slot>

@@ -10,7 +10,7 @@
                                 <img src="{{ $image->preview }}" loading="lazy" class="img-fluid">
                             </a>
                             <div class="images-list-text">
-                                <h3>{{ $image->name }}</h3>
+                                <h5>{{ $image->name }}</h5>
                             </div>
                         </div>
                     </div>

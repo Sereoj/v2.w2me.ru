@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
+use App\Mail\Auth\VerifyMail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -38,6 +40,8 @@ class RegisterController extends Controller
             event(new Registered($user));
 
             auth()->login($user, true);
+            Mail::to($user->email)->send(new VerifyMail($user));
+
             return redirect()->route('user.profile');
         }
 

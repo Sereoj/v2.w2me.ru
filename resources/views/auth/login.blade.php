@@ -21,7 +21,10 @@
                     <input type="checkbox" class="form-check-input" id="rememberUser" name="rememberUser" value="true">
                     <label class="form-check-label" for="rememberUser">Запомни меня</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Войти</button>
+                <div class="md-3">
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                    <a class="btn btn-link" href="">Восстановить пароль</a>
+                </div>
             </form>
         </div>
     </x-slot>

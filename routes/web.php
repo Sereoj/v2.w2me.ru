@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UI\EditProfileController;
+use App\Http\Controllers\UI\ProfileController;
 use App\Http\Controllers\UI\ThumbnailsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -49,40 +52,25 @@ Route::name('images.')->group(
     }
 );
 
-Route::get('/email/verify', function () {
-    return view('auth.passwords.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return route('index');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
 Route::name('user.')->group(
     function ()
     {
-        Route::get('/register', [AuthController::class,'index_register'])->name('register');
-        Route::post('/register', [AuthController::class, 'create']);
+        Route::get('/register', [RegisterController::class,'index'])->name('register');
+        Route::post('/register', [RegisterController::class, 'store']);
 
-        Route::get('/login', [AuthController::class, 'index_login'])->name('login');
-        Route::post('/login', [AuthController::class, 'store']);
+        Route::get('/login', [LoginController::class, 'index'])->name('login');
+        Route::post('/login', [LoginController::class, 'store']);
 
-        Route::middleware('auth')->get('/profile', [AuthController::class, 'index_profile'])->name('profile');
-        Route::middleware('auth')->post('/profile', [AuthController::class, 'store_profile']);
+        Route::middleware('auth:web')->group(function (){
+            Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+            Route::post('/profile', [ProfileController::class, 'store']);
 
-        Route::middleware('auth')->get('/profile/edit', [AuthController::class, 'index_edit_profile'])->name('edit');
-        Route::middleware('auth')->post('/profile/edit', [AuthController::class, 'store_edit_profile']);
+            Route::get('/profile/edit', [EditProfileController::class, 'index'])->name('edit');
+            Route::post('/profile/edit', [EditProfileController::class, 'store']);
 
-        Route::middleware('auth')->get('/dashboard', [AuthController::class, 'index_profile'])->name('dashboard');
+            Route::get('/logout',[ProfileController::class, 'logout'])->name('logout');
+        });
 
-        Route::middleware('auth')->get('/logout',[ThumbnailsController::class, 'index_logout'])->name('logout');
 
     }
 );

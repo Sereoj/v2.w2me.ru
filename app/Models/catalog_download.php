@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|catalog_download whereLinks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|catalog_download whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|catalog_download whereUpdatedAt($value)
+ * @property int $catalog_id
+ * @method static \Illuminate\Database\Eloquent\Builder|catalog_download whereCatalogId($value)
  */
 class catalog_download extends Model
 {

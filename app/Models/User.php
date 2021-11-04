@@ -46,6 +46,13 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $load_themes
  * @method static \Illuminate\Database\Eloquent\Builder|User whereInstallThemes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLoadThemes($value)
+ * @property string|null $lang
+ * @property string|null $api_token
+ * @property-read \App\Models\user_photo|null $photo
+ * @property-read \App\Models\user_role|null $role
+ * @property-read \App\Models\user_type|null $type
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereApiToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLang($value)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {

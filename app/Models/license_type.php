@@ -16,6 +16,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @method static \Illuminate\Database\Eloquent\Builder|license_type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|license_type whereType($value)
+ * @property int $catalog_id
+ * @property string|null $cost
+ * @property string|null $currency
+ * @method static \Illuminate\Database\Eloquent\Builder|license_type whereCatalogId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|license_type whereCost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|license_type whereCurrency($value)
  */
 class license_type extends Model
 {

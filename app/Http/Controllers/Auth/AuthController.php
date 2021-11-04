@@ -25,12 +25,12 @@ class AuthController extends Controller
 
     public function index_login()
     {
-        return view('layouts.login', ['meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
+        return view('auth.login', ['meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10']);
     }
 
     public function index_register()
     {
-        return view('layouts.register',[
+        return view('auth.register',[
             'meta_title' => 'Get Desktop New Dynamic Wallpapers for Windows 10',
             'meta_description' => '',
             ]
@@ -44,14 +44,15 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => \Hash::make($request->password),
         ]);
-        $user->role()->create([
-            'role' => 'user'
-        ]);
 
         $user->type()->create([
-            'type' => 'free',
-            'gift_time' => null,
-            'cost' => '2000'
+            'type' => 1,
+            'gift_time' => now()->toDate(),
+            'cost' => '10000'
+        ]);
+
+        $user->role()->create([
+            'role' => 'user'
         ]);
 
         if($user != null || $user != false)
@@ -75,7 +76,7 @@ class AuthController extends Controller
     {
         $user = new UserResource(auth()->user());
 
-        return view('layouts.profile',
+        return view('pages.profile',
         [
             'header' => 'Первый профиль',
             'meta_title' => '',
@@ -105,7 +106,7 @@ class AuthController extends Controller
         $args['status'] = isset($params['password']) && ($params['password'] == true);
         $args['status_image'] = isset($params['photo'] ) && ($params['photo'] != null);
 
-        return view('layouts.edit_profile',$args);
+        return view('pages.edit_profile',$args);
     }
 
     public function store_edit_profile(StoreProfileEditRequest $request)
@@ -124,10 +125,10 @@ class AuthController extends Controller
         {
             $params['photo'] = $request->photo;
 
-            $path = $request->photo->store('/','public');
+            $path = '/storage/'.$request->photo->store('/','public');
 
             $user->photo()->create([
-                'path' => '/public'.Storage::url($path)
+                'path' => asset($path)
             ]);
         }
 

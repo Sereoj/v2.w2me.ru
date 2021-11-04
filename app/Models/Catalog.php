@@ -36,7 +36,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Catalog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Catalog whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $meta_title
+ * @property string|null $meta_description
+ * @property-read \App\Models\Categories $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\catalog_download[] $download
+ * @property-read int|null $download_count
+ * @property-read \App\Models\license_type|null $license
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\catalog_rating[] $rating
+ * @property-read int|null $rating_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Catalog whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Catalog whereMetaTitle($value)
  */
+
 class Catalog extends Model
 {
     use HasFactory;
@@ -44,6 +56,11 @@ class Catalog extends Model
     protected $table = 'catalog';
     protected $fillable = ['id' , 'name', 'description', 'preview', 'images', 'category_id', 'license_type_id', 'user_id', 'catalog_download_id', 'catalog_rating_id'];
 
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = $this->str_slug($value);
+    }
 
     public function category()
     {

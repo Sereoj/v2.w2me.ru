@@ -29,7 +29,6 @@ class CreateCatalogTable extends Migration
             $table->string('meta_description')->nullable();
             $table->string('preview')->nullable();
             $table->longText('images')->nullable();
-
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete(); // Кто загрузил
         });

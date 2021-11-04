@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|catalog_rating whereReviewCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|catalog_rating whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|catalog_rating whereWorstRating($value)
+ * @property int $catalog_id
+ * @method static \Illuminate\Database\Eloquent\Builder|catalog_rating whereCatalogId($value)
  */
 class catalog_rating extends Model
 {

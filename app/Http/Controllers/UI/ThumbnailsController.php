@@ -22,13 +22,6 @@ class ThumbnailsController extends Controller
                     'url' => Route::currentRouteName() != 'index' ? Route::current()->uri : Route::current()->domain()
                 ]);
     }
-    public function index_logout()
-    {
-        $this->index();
-        auth()->logout();
-
-        return redirect(route('index'));
-    }
     public function index_new()
     {
         $images = Catalog::orderBy('id','desc')->take(10)->get();

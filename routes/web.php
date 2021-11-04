@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UI\EditProfileController;
 use App\Http\Controllers\UI\ProfileController;
 use App\Http\Controllers\UI\ThumbnailsController;
@@ -22,12 +23,14 @@ use Illuminate\Support\Facades\Route;
  * index w2me.ru
  * index->login
  * index->register
+ * index->forgot-password
  * index->reset
  * index->pages w2me.ru/pages/
  * index->catalog->page w2me.ru/catalog/name
  * index->catalog->new->page w2me.ru/catalog/new/name
  * index->category->catalog w2me.ru/category/catalog
  */
+Auth::routes(['verify' => true]);
 
 Route::get('/',[ThumbnailsController::class, 'index'])->name('index');
 
@@ -60,6 +63,9 @@ Route::name('user.')->group(
 
         Route::get('/login', [LoginController::class, 'index'])->name('login');
         Route::post('/login', [LoginController::class, 'store']);
+
+        Route::get('/forgot-password',[ResetPasswordController::class,'index'])->name('forgot.password');
+        Route::get('/forgot-password',[ResetPasswordController::class,'index'])->name('forgot.password');
 
         Route::middleware('auth:web')->group(function (){
             Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="content">
         <div class="row gy-4">
+            <form action="" method="post"></form>
         </div>
     </x-slot>
 

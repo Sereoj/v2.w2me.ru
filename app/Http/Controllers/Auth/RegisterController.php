@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -34,6 +35,8 @@ class RegisterController extends Controller
 
         if($user != false)
         {
+            event(new Registered($user));
+
             auth()->login($user, true);
             return redirect()->route('user.profile');
         }

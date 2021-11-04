@@ -15,27 +15,42 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/**
+ * index w2me.ru
+ * index->login
+ * index->register
+ * index->reset
+ * index->pages w2me.ru/pages/
+ * index->catalog->page w2me.ru/catalog/name
+ * index->catalog->new->page w2me.ru/catalog/new/name
+ * index->category->catalog w2me.ru/category/catalog
+ */
 
 Route::get('/',[ThumbnailsController::class, 'index'])->name('index');
 
 Route::name('images.')->group(
     function ()
     {
-        Route::get('/new',[ThumbnailsController::class, 'index_new'])->name('new');
-        Route::get('/popular',[ThumbnailsController::class, 'index_popular'])->name('popular');
-        Route::get('/wait',[ThumbnailsController::class, 'index_wait'])->name('wait');
+        Route::get('/catalog/new',[ThumbnailsController::class, 'index_new'])->name('new');
+        Route::get('/catalog/popular',[ThumbnailsController::class, 'index_popular'])->name('popular');
+        Route::get('/catalog/wait',[ThumbnailsController::class, 'index_wait'])->name('wait');
 
-        Route::middleware('auth')->get('/favorite',[ThumbnailsController::class, 'index_favorite'])->name('favorite');
-        Route::middleware('auth')->get('/install',[ThumbnailsController::class, 'index_install'])->name('install');
-        Route::middleware('auth')->get('/load',[ThumbnailsController::class, 'index_load'])->name('load');
-        Route::middleware('auth')->post('/load',[ThumbnailsController::class, 'store_load']);
+        Route::get('/catalog/{slug}',[ThumbnailsController::class, 'index_simple'])->name('simple');
 
-        Route::get('/images/{id}',[ThumbnailsController::class, 'index_simple'])->name('simple');
+        Route::middleware('auth:web')->group(function (){
+            //gets
+            Route::get('/favorite',[ThumbnailsController::class, 'index_favorite'])->name('favorite');
+            Route::get('/install',[ThumbnailsController::class, 'index_install'])->name('install');
+            Route::get('/load',[ThumbnailsController::class, 'index_load'])->name('load');
+
+            //post
+            Route::post('/load',[ThumbnailsController::class, 'store_load']);
+        });
     }
 );
 
 Route::get('/email/verify', function () {
-    return view('layouts.verify-email');
+    return view('auth.passwords.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
